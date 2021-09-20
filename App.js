@@ -13,28 +13,25 @@ import FormInput from './src/components/FormInput';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  const [mode, setMode] = useState(isDarkMode);
   const [isEnabled, setIsEnabled] = useState(false);
+  // write a state called 'mode', the initial state is 'isDarkMode'
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: mode ? 'black' : 'white'}}>
+    // Give style in SafeAreaView that changes the backgroundColor when 'mode' state changes
+    <SafeAreaView style={{flex: 1}}>
       <View style={styles.switch}>
-        <Switch
-          trackColor={{false: '#767577', true: '#81b0ff'}}
-          thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-          onValueChange={() => setMode(!mode)}
-          value={mode}
-        />
+        {/* Add Switch in this part which would change the theme color */}
       </View>
       <View style={styles.container}>
-        <Text style={[styles.theme, {color: mode ? 'white' : 'black'}]}>
-          {mode ? 'Dark theme' : 'Light theme'}
+        {/* Give style in Text that changes the font color */}
+        <Text style={styles.themeText}>
+          {/* Change the text when the 'mode' state changes */}
         </Text>
-        <FormInput placeholder="e-mail" inputType="email-address" mode={mode} />
-        <FormInput placeholder="enter text" inputType="default" mode={mode} />
-        <FormInput placeholder="phone number" inputType="numeric" mode={mode} />
+        {/* FormInput component with keyboardType="email-address" and placeholder, to change theme must implement 'mode' state*/}
+        {/* FormInput component with keyboardType="default" and placeholder, to change theme must implement 'mode' state*/}
+        {/* FormInput component with keyboardType="numeric" and placeholder, to change theme must implement 'mode' state*/}
         <View style={styles.button}>
-          <Button title="Submit" onPress={() => Alert.alert('You tapped')} />
+          {/* Add Button in this part with alert function */}
         </View>
       </View>
     </SafeAreaView>
@@ -42,22 +39,21 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
+  switch: {
+    padding: 20,
+  },
   container: {
     justifyContent: 'flex-start',
     alignItems: 'center',
     padding: 30,
   },
-  theme: {
-    fontSize: 25,
-    textAlign: 'center',
-    paddingBottom: 10,
-  },
-  switch: {
-    padding: 20,
+  themeText: {
+    // font's size must be 25
+    // place the text in center of the screen
+    // give a padding (optional)
   },
   button: {
-    marginTop: 10,
-    width: '80%',
+    // give a width to button
   },
 });
 
